@@ -41,8 +41,13 @@ class FragmentMenu : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_menu, container, false)
         val rvmenu:RecyclerView = view.findViewById(R.id.recyclerMenu)
+
+        //tambahkan akses database
+        val dbHelper = DatabaseHelper(this.requireContext())
+        val list = dbHelper.showMenu()
+
         rvmenu.layoutManager = GridLayoutManager(activity,2)
-        rvmenu.adapter = MenuAdapter()
+        rvmenu.adapter = MenuAdapter(list)
 
         return view
     }
